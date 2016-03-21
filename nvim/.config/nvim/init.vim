@@ -32,6 +32,8 @@ set visualbell
 set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
 let g:netrw_liststyle = 3
 
+set tags=tags;/,codex.tags;/
+
 " Colour scheme
 set background=dark
 let base16colorspace = 256
