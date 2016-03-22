@@ -39,7 +39,7 @@ set background=dark
 let base16colorspace = 256
 colorscheme base16-tomorrow
 
-" Haskell
+" necoghc (Haskell)
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:necoghc_enable_detailed_browse = 1
 
@@ -57,5 +57,7 @@ nnoremap <C-Up>    <C-W>-
 map <Leader>n :NERDTreeToggle<CR>
 
 " YouCompleteMe
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
+let g:ycm_semantic_triggers = {'haskell' : ['.'], 'rust' : ['.', '::']}
+let g:ycm_rust_src_path = $HOME . '/dev/rust-src/current/src'
+nnoremap <Leader>] :YcmCompleter GoTo<CR>
 
