@@ -42,3 +42,5 @@
 --regex-go=/^func[[:space:]]+([a-zA-Z0-9_]+)[[:space:]]*\(/\1/f,func/
 --regex-go=/^var[[:space:]]+([a-zA-Z0-9_]+)/\1/v,var/
 --regex-go=/^type[[:space:]]+([a-zA-Z0-9_]+)/\1/t,type/
+
+--fields=+l
