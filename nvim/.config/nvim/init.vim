@@ -62,3 +62,6 @@ let g:ycm_semantic_triggers = {'haskell' : ['.'], 'rust' : ['.', '::']}
 let g:ycm_rust_src_path = $HOME . '/dev/rust-src/current/src'
 nnoremap <Leader>] :YcmCompleter GoTo<CR>
 
+" CtrlP
+nnoremap <Leader>p :CtrlPMRUFiles<CR>
+
