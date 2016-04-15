@@ -58,7 +58,7 @@ map <Leader>n :NERDTreeToggle<CR>
 
 " YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_semantic_triggers = {'haskell' : ['.'], 'rust' : ['.', '::']}
+let g:ycm_semantic_triggers = {'rust' : ['.', '::']}
 let g:ycm_rust_src_path = $HOME . '/dev/rust-src/current/src'
 nnoremap <Leader>] :YcmCompleter GoTo<CR>
 
