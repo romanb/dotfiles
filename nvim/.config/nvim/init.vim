@@ -3,7 +3,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'benekastah/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
-Plug 'neovimhaskell/haskell-vim', { 'for': [ 'haskell', 'cabal' ] }
 Plug 'eagletmt/neco-ghc'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --racer-completer' }
 Plug 'rust-lang/rust.vim', { 'for': [ 'rust' ] }
