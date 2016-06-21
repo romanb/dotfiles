@@ -7,6 +7,7 @@ Plug 'eagletmt/neco-ghc'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --racer-completer' }
 Plug 'rust-lang/rust.vim', { 'for': [ 'rust' ] }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Tagbar'
 call plug#end()
 
 " Basics
@@ -35,7 +36,7 @@ set tags=tags;/,codex.tags;/
 
 " Colour scheme
 set background=dark
-let base16colorspace = 256
+let base16colorspace=256
 colorscheme base16-tomorrow
 
 " necoghc (Haskell)
@@ -63,4 +64,59 @@ nnoremap <Leader>] :YcmCompleter GoTo<CR>
 
 " CtrlP
 nnoremap <Leader>p :CtrlPMRUFiles<CR>
+set wildignore+=*.o,*.hi,*.so,*.swp,*.jar,*.class,*.tar*
+
+" Highlighting
+nnoremap <Leader>h :nohlsearch<CR>
+
+" Tagbar
+nnoremap <Leader>t :TagbarToggle<CR>
+
+" Tagbar - Haskell
+let g:tagbar_type_haskell = {
+    \ 'ctagsbin'  : 'hasktags',
+    \ 'ctagsargs' : '-x -c -o-',
+    \ 'kinds'     : [
+        \  'm:modules:0:1',
+        \  'd:data: 0:1',
+        \  'd_gadt: data gadt:0:1',
+        \  't:type names:0:1',
+        \  'nt:new types:0:1',
+        \  'c:classes:0:1',
+        \  'cons:constructors:1:1',
+        \  'c_gadt:constructor gadt:1:1',
+        \  'c_a:constructor accessors:1:1',
+        \  'ft:function types:1:1',
+        \  'fi:function implementations:0:1',
+        \  'o:others:0:1'
+    \ ],
+    \ 'sro'        : '.',
+    \ 'kind2scope' : {
+        \ 'm' : 'module',
+        \ 'c' : 'class',
+        \ 'd' : 'data',
+        \ 't' : 'type'
+    \ },
+    \ 'scope2kind' : {
+        \ 'module' : 'm',
+        \ 'class'  : 'c',
+        \ 'data'   : 'd',
+        \ 'type'   : 't'
+    \ }
+\ }
+
+" Tagbar - Rust
+let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits,traits',
+        \'i:impls,trait implementations',
+    \ ]
+ \ }
 
