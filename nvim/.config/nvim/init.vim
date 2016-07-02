@@ -4,7 +4,7 @@ Plug 'benekastah/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
 Plug 'eagletmt/neco-ghc'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --racer-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
 Plug 'rust-lang/rust.vim', { 'for': [ 'rust' ] }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Tagbar'
@@ -45,7 +45,17 @@ let g:necoghc_enable_detailed_browse = 1
 
 " Neomake
 " let g:neomake_open_list = 2
-autocmd! BufWritePost * Neomake
+autocmd! BufWritePost *.hs Neomake
+autocmd! BufWritePost *.rs Neomake
+autocmd! BufWritePost *.java Neomake
+
+let g:neomake_java_mvn_maker = {
+    \ 'append_file': 0,
+    \ 'args': ['compile'],
+    \ 'errorformat': '[%tRROR]\ %f:[%l]\ %m,' .
+    \                '[%tRROR]\ %f:[%l\,%v]\ %m,%-G%.%#',
+    \ }
+let g:neomake_java_enabled_makers = ['mvn']
 
 " Resizing Windows
 nnoremap <C-Left>  <C-W><
