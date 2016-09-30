@@ -35,12 +35,9 @@
 --regex-scala=/^[[:space:]]*(final|private|public|[[:space:]])*case object[[:space:]]+([a-zA-Z0-9_]+)/\2/o,case objects/
 --regex-scala=/^[[:space:]]*import[[:space:]]+([a-zA-Z0-9_{}.,[:space:]=>]+$)/\1/i,imports/
 
---langdef=go
---langmap=go:.go
---regex-go=/^package[[:space:]]+([a-zA-Z0-9_]+)/\1/p,package/
---regex-go=/^func[[:space:]]+\([^ \t]+([^)]+)\)[[:space:]]*([a-zA-Z0-9_]+)[[:space:]]*\(/\2/m,method/
---regex-go=/^func[[:space:]]+([a-zA-Z0-9_]+)[[:space:]]*\(/\1/f,func/
---regex-go=/^var[[:space:]]+([a-zA-Z0-9_]+)/\1/v,var/
---regex-go=/^type[[:space:]]+([a-zA-Z0-9_]+)/\1/t,type/
+--langdef=prolog
+--langmap=prolog:.pl
+--regex-prolog=/^([a-z0-9_]+)/\1/p,predicate,predicate definition/
+--regex-prolog=/^:-[ \t]+(dynamic|multifile|thread_local)[ \t]+([a-z0-9_]+)/\2/p,predicate,predicate metadata/
 
 --fields=+l

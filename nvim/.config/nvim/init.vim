@@ -65,6 +65,7 @@ nnoremap <C-Up>    <C-W>-
 
 " NERDTree
 map <Leader>n :NERDTreeToggle<CR>
+let g:NERDTreeMouseMode=3
 
 " YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -129,4 +130,7 @@ let g:tagbar_type_rust = {
         \'i:impls,trait implementations',
     \ ]
  \ }
+
+autocmd BufNewFile,BufRead *.pl setfiletype prolog syntax=prolog
+let g:filetype_pl = "prolog"
 
