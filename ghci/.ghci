@@ -1,0 +1,3 @@
+:set prompt "λ> "
+:seti -Wno-name-shadowing
+:seti -XOverloadedStrings
