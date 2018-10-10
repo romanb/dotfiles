@@ -40,9 +40,8 @@ let g:netrw_liststyle = 3
 set tags=tags;/,codex.tags;/
 
 " Colour scheme
-set background=dark
 let base16colorspace=256
-colorscheme base16-tomorrow
+colorscheme base16-tomorrow-night
 
 " necoghc (Haskell)
 " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
@@ -74,6 +73,7 @@ inoremap <Leader>uforall  <C-v>u2200
 inoremap <Leader>uexists  <C-v>u2203
 inoremap <Leader>uequals  <C-v>u2250
 inoremap <Leader>ualpha   <C-v>u03b1
+inoremap <Leader>uelem    <C-v>u2208
 
 " Resizing Windows
 nnoremap <C-Left>  <C-W><
