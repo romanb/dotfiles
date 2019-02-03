@@ -1,10 +1,7 @@
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-" Plug 'benekastah/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
-" Plug 'eagletmt/neco-ghc'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
 Plug 'rust-lang/rust.vim', { 'for': [ 'rust' ] }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
@@ -12,6 +9,13 @@ Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'chrisbra/unicode.vim'
 Plug 'idris-hackers/idris-vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'junegunn/fzf'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-yarp'
 call plug#end()
 
 " Basics
@@ -35,31 +39,13 @@ set ruler
 set visualbell
 set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
 set textwidth=80
-let g:netrw_liststyle = 3
-
+set guicursor=i-ci-ve:block-blinkon250
+let g:netrw_liststyle=3
 set tags=tags;/,codex.tags;/
 
 " Colour scheme
 let base16colorspace=256
 colorscheme base16-tomorrow-night
-
-" necoghc (Haskell)
-" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-" let g:necoghc_enable_detailed_browse = 1
-
-" Neomake
-" let g:neomake_open_list = 2
-" autocmd! BufWritePost *.hs Neomake
-" autocmd! BufWritePost *.rs Neomake
-" autocmd! BufWritePost *.java Neomake
-
-" let g:neomake_java_mvn_maker = {
-"     \ 'append_file': 0,
-"     \ 'args': ['compile'],
-"     \ 'errorformat': '[%tRROR]\ %f:[%l]\ %m,' .
-"     \                '[%tRROR]\ %f:[%l\,%v]\ %m,%-G%.%#',
-"     \ }
-" let g:neomake_java_enabled_makers = ['mvn']
 
 " Unicode symbols
 inoremap <Leader>uproves  <C-v>u22a2
@@ -86,18 +72,20 @@ map <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeMouseMode=3
 let g:NERDTreeIgnore = ['\.aux$', '\.fls$', '\.fdb_latexmk', '\.log', '\.out', '\.ods']
 
-" YouCompleteMe
-" let g:ycm_collect_identifiers_from_tags_files = 1
-" let g:ycm_semantic_triggers = {'rust' : ['.', '::']}
-" let g:ycm_rust_src_path = $HOME . '/dev/rust-src/current/src'
-" nnoremap <Leader>] :YcmCompleter GoTo<CR>
-
 " CtrlP
 nnoremap <Leader>p :CtrlPMRUFiles<CR>
 set wildignore+=*.o,*.hi,*.so,*.swp,*.jar,*.class,*.tar*
 
 " Highlighting
 nnoremap <Leader>h :nohlsearch<CR>
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+let g:deoplete#enable_at_startup = 1
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'haskell': ['hie-wrapper']
+    \ }
 
 " Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
