@@ -44,8 +44,10 @@ let g:netrw_liststyle=3
 set tags=tags;/,codex.tags;/
 
 " Colour scheme
-let base16colorspace=256
-colorscheme base16-tomorrow-night
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " Unicode symbols
 inoremap <Leader>uproves  <C-v>u22a2
