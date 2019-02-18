@@ -140,6 +140,11 @@ let g:tagbar_type_rust = {
     \ ]
  \ }
 
+" Prolog dominates Perl
 autocmd BufNewFile,BufRead *.pl setfiletype prolog syntax=prolog
 let g:filetype_pl = "prolog"
+
+" rusty-tags generation and update
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
