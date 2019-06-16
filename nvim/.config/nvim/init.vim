@@ -3,7 +3,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
 Plug 'rust-lang/rust.vim', { 'for': [ 'rust' ] }
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'chrisbra/unicode.vim'
@@ -13,7 +12,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'roxma/nvim-yarp'
 call plug#end()
@@ -82,9 +82,10 @@ let g:NERDTreeIgnore = [
     \'rusty-tags'
     \]
 
-" CtrlP
-nnoremap <Leader>p :CtrlPMRUFiles<CR>
-set wildignore+=*.o,*.hi,*.so,*.swp,*.jar,*.class,*.tar*
+" fzf
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>g :Rg<CR>
+set wildignore+=*.o,*.hi,*.so,*.jar,*.class,*.tar*
 
 " Highlighting
 nnoremap <Leader>h :nohlsearch<CR>

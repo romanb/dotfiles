@@ -116,5 +116,8 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # Stack auto-completion
 eval "$(stack --bash-completion-script stack)"
 
+# For the Rust LanguageClient
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/
 
+# fzf fuzzy-finder
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
