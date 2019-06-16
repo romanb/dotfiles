@@ -116,3 +116,5 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # Stack auto-completion
 eval "$(stack --bash-completion-script stack)"
 
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/
+

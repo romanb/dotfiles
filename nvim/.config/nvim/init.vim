@@ -72,7 +72,15 @@ nnoremap <C-Up>    <C-W>-
 " NERDTree
 map <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeMouseMode=3
-let g:NERDTreeIgnore = ['\.aux$', '\.fls$', '\.fdb_latexmk', '\.log', '\.out', '\.ods']
+let g:NERDTreeIgnore = [
+    \'\.aux$',
+    \'\.fls$',
+    \'\.fdb_latexmk',
+    \'\.log',
+    \'\.out',
+    \'\.ods',
+    \'rusty-tags'
+    \]
 
 " CtrlP
 nnoremap <Leader>p :CtrlPMRUFiles<CR>
@@ -81,13 +89,15 @@ set wildignore+=*.o,*.hi,*.so,*.swp,*.jar,*.class,*.tar*
 " Highlighting
 nnoremap <Leader>h :nohlsearch<CR>
 
-" Required for operations modifying multiple buffers like rename.
-set hidden
+" LanguageClient
+set hidden " Required for operations modifying multiple buffers like rename.
 let g:deoplete#enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
     \ 'haskell': ['hie-wrapper']
     \ }
+nnoremap <silent> <C-[> :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <C-h> :call LanguageClient#textDocument_hover()<CR>
 
 " Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
@@ -145,6 +155,6 @@ autocmd BufNewFile,BufRead *.pl setfiletype prolog syntax=prolog
 let g:filetype_pl = "prolog"
 
 " rusty-tags generation and update
-autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
 autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
