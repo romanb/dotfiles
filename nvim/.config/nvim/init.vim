@@ -1,3 +1,4 @@
+
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree'
@@ -12,10 +13,12 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'roxma/nvim-yarp'
+" Plug 'leafgarland/typescript-vim'
+Plug 'joukevandermaas/vim-ember-hbs'
 call plug#end()
 
 " Basics
@@ -46,7 +49,8 @@ set tags=tags;/,codex.tags;/
 " Colour scheme
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
-  source ~/.vimrc_background
+  colorscheme base16-tomorrow-night
+  " source ~/.vimrc_background
 endif
 
 " Unicode symbols
@@ -68,6 +72,22 @@ nnoremap <C-Left>  <C-W><
 nnoremap <C-Right> <C-W>>
 nnoremap <C-Down>  <C-W>+
 nnoremap <C-Up>    <C-W>-
+
+" coc
+let g:coc_global_extensions = [
+  \ 'coc-actions',
+  \ 'coc-tsserver',
+  \ 'coc-css',
+  \ 'coc-json',
+  \ 'coc-html',
+  \ 'coc-vimlsp',
+  \ 'coc-highlight',
+  \ 'coc-ember'
+\ ]
+nmap <silent> <leader>,d <Plug>(coc-definition)
+nmap <silent> <leader>,y <Plug>(coc-type-definition)
+nmap <silent> <leader>,i <Plug>(coc-implementation)
+nmap <silent> <leader>,r <Plug>(coc-references)
 
 " NERDTree
 map <Leader>n :NERDTreeToggle<CR>
@@ -99,6 +119,9 @@ let g:LanguageClient_serverCommands = {
     \ }
 nnoremap <silent> <C-[> :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <C-h> :call LanguageClient#textDocument_hover()<CR>
+
+" Search for visually selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
